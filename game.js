@@ -10,6 +10,9 @@ var keyPress = false;
 var scale_factor = 1.0;
 var last_scale_factor = 1.0;
 
+var duude_pos_x = 200;
+var duude_pos_y = 200;
+
 var game = new Phaser.Game(
         1024, 768, Phaser.AUTO, '',  
             {preload: preload, create: create, update: update}
@@ -17,8 +20,8 @@ var game = new Phaser.Game(
 
 function preload() {
     tiled_map = game.load.tilemap('tile', 'map.json', null, Phaser.Tilemap.TILED_JSON);
-    game.load.image('tiles', 'grassy_2.png');
-    game.load.spritesheet('duude', 'soldier.png', 64, 64);
+    game.load.image('tiles', 'assets/grassy_2.png');
+    game.load.spritesheet('duude', 'assets/soldier.png', 64, 64);
 }
 
 function mouseWheel(event) {   
@@ -34,9 +37,6 @@ function mouseWheel(event) {
 
 }
 
-
-var duude_pos_x = 200;
-var duude_pos_y = 200;
 
 function create() {
     game.stage.backgroundColor = '#bcbcbc';
