@@ -10,8 +10,8 @@ var keyPress = false;
 var scale_factor = 1.0;
 var last_scale_factor = 1.0;
 
-var duude_pos_x = 200;
-var duude_pos_y = 200;
+var duude_pos_x = 48*40;
+var duude_pos_y = 48*37;
 
 var game = new Phaser.Game(
         1024, 768, Phaser.AUTO, '',  
@@ -45,11 +45,13 @@ function create() {
 
     cursors = game.input.keyboard.createCursorKeys();
 
-    map = game.add.tilemap('tile', 48, 48, 64, 32);
+    map = game.add.tilemap('tile', 48, 48, 240, 240);
     map.addTilesetImage('grassy_2', 'tiles');
 
     layer = map.createLayer('ground');
-    coll_layer = map.createLayer('coll');
+    map.createLayer('fence1');
+    map.createLayer('fence2');
+    //map.createLayer('coll');
     layer.resizeWorld();
 
     sprite = game.add.sprite(duude_pos_x, duude_pos_y, 'duude');
@@ -118,6 +120,14 @@ function update() {
         }else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN)) {
             sprite.y += 2;
             return;
+        }
+
+        if (game.input.keyboard.isDown(Phaser.Keyboard.F)){
+            if (game.scale.isFullScreen) {
+                game.scale.stopFullScreen();
+            } else {
+                game.scale.startFullScreen(false);
+            } 
         }
     }
 
